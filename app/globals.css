@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0e12;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Cyber Bento Grid Lines & Shadows */
+.cyber-panel {
+  background-color: rgba(13, 14, 18, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cyber-panel-glow {
+  background-color: rgba(18, 19, 26, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 0 30px -10px rgba(99, 102, 241, 0.2);
+}
+
+/* Repeating Warning Stripes for Invalid Drag Targets */
+.drag-target-invalid {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(239, 68, 68, 0.12),
+    rgba(239, 68, 68, 0.12) 8px,
+    rgba(239, 68, 68, 0.02) 8px,
+    rgba(239, 68, 68, 0.02) 16px
+  );
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Emerald Target for Valid Drag Targets */
+.drag-target-valid {
+  background-color: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.8) !important;
+  box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+/* Conflict Glowing Card */
+.slot-conflict {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 18px -2px rgba(239, 68, 68, 0.5);
+  animation: pulse-conflict 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-conflict {
+  0%, 100% {
+    border-color: rgba(239, 68, 68, 0.9);
+    box-shadow: 0 0 18px 2px rgba(239, 68, 68, 0.55);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 8px 0px rgba(239, 68, 68, 0.2);
+  }
+}
+
+/* Accessibility: prefers-reduced-motion compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .slot-conflict {
+    animation: none !important;
+    border-color: #ef4444 !important;
+  }
+}
+
+
+/* High-Resolution Clean Print Stylesheet */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .cyber-panel {
+    background: #ffffff !important;
+    border: 1px solid #d4d4d8 !important;
+    box-shadow: none !important;
+  }
+  .slot-card {
+    border: 1px solid #71717a !important;
+    color: #000000 !important;
+  }
+}
